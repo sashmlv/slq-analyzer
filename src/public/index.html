@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The sql analyzer</title>
+    <meta charset = 'utf-8' >
+    <meta name = 'viewport' content = 'width=device-width, initial-scale=1' >
+    <meta name = 'description' content = 'The sql analyzer' >
+    <link rel = 'stylesheet' href = '/uikit/uikit.min.css' >
+    <link rel = 'stylesheet' href = '/codemirror-5.52.2/lib/codemirror.css' >
+    <link rel = 'stylesheet' href = '/codemirror-5.52.2/addon/fold/foldgutter.css' />
+    <link rel = 'stylesheet' href = '/codemirror-5.52.2/theme/the-matrix.css' >
+    <link rel = 'stylesheet' href = '/style.css' >
+  </head>
+  <body>
+
+    <div class = 'uk-section' >
+      <div class = 'uk-container' >
+        <h4 class = 'uk-h4' >The sql analyzer</h4>
+        <textarea class = 'uk-textarea uk-height-medium input' placeholder = 'The sql input' ></textarea>
+        <button class = 'uk-button uk-button-default uk-margin-small-top uk-float-right execute' >Execute</button>
+      </div>
+    </div>
+
+    <div class = 'uk-section' >
+      <div class = 'uk-container' >
+        <textarea readonly wrap = 'off' class = 'uk-textarea uk-height-large output' placeholder = 'The sql output' ></textarea>
+      </div>
+    </div>
+
+    <script src = '/uikit/uikit.min.js' ></script>
+    <script src = '/uikit/uikit-icons.min.js' ></script>
+    <script src = '/codemirror-5.52.2/lib/codemirror.js' ></script>
+
+    <script src = '/codemirror-5.52.2/addon/fold/foldcode.js' ></script>
+    <script src = '/codemirror-5.52.2/addon/fold/foldgutter.js' ></script>
+    <script src = '/codemirror-5.52.2/addon/fold/brace-fold.js' ></script>
+    <script src = '/codemirror-5.52.2/addon/fold/xml-fold.js' ></script>
+    <script src = '/codemirror-5.52.2/addon/fold/indent-fold.js' ></script>
+    <script src = '/codemirror-5.52.2/addon/fold/markdown-fold.js' ></script>
+    <script src = '/codemirror-5.52.2/addon/fold/comment-fold.js' ></script>
+
+    <script src = '/codemirror-5.52.2/mode/sql/sql.js' ></script>
+    <script src = '/codemirror-5.52.2/mode/javascript/javascript.js' ></script>
+
+    <script src = '/script.js' ></script>
+
+  </body>
+</html>

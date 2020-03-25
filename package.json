@@ -1,0 +1,19 @@
+{
+  "name": "sql-analyzer",
+  "version": "0.0.1",
+  "description": "sql analyzer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src",
+    "dev": "node src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sashmlv",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "fastify": "^2.13.0",
+    "fastify-static": "^2.6.0",
+    "pg": "^7.18.2"
+  }
+}

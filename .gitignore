@@ -1,0 +1,7 @@
+.env
+package-lock.json
+node_modules
+src/public/codemirror*/**
+!src/public/codemirror*/.gitkeep
+src/public/uikit*/**
+!src/public/uikit*/.gitkeep
