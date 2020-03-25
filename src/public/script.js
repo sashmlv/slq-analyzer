@@ -4,16 +4,16 @@ const URL = 'http://localhost:3000';
 
 (async _=> {
 
+  let inputContent = localStorage.getItem( 'input' );
+
   const button  = document.querySelector( '.execute' ),
-        input   = document.querySelector( '.input' ),
-        output  = document.querySelector( '.output' ),
-        inputEditor = CodeMirror.fromTextArea( input, {
+        inputEditor = CodeMirror.fromTextArea( document.querySelector( '.input' ), {
 
           theme: 'the-matrix',
           mode: 'text/x-plsql',
           lineNumbers: true,
         }),
-        outputEditor = CodeMirror.fromTextArea( output, {
+        outputEditor = CodeMirror.fromTextArea( document.querySelector( '.output' ), {
 
           // mode: 'application/ld+json',
           // mode: 'application/json',
@@ -74,16 +74,22 @@ const URL = 'http://localhost:3000';
           },
         });
 
+  inputEditor.getDoc().setValue( inputContent );
+
+  inputEditor.on( 'change', editor => {
+
+    localStorage.setItem( 'input', editor.getValue());
+  });
+
   button.addEventListener( 'click', async e => {
 
-    let result = await execute( input.value );
+    let result = await execute( inputEditor.getDoc().getValue() );
 
     result = format( result );
 
     outputEditor.getDoc().setValue( result );
   });
 })();
-
 
 /**
  * Execute query
@@ -121,7 +127,7 @@ function format( arr ) {
 
   let str = '';
 
-  const queryPlan = Boolean( arr[ 0 ][ 'QUERY PLAN' ]);
+  const queryPlan = arr && arr[ 0 ] && arr[ 0 ][ 'QUERY PLAN' ];
 
   if( queryPlan && arr.length > 1 ) {
 
