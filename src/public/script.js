@@ -8,45 +8,68 @@ const URL = 'http://localhost:3000';
         input   = document.querySelector( '.input' ),
         output  = document.querySelector( '.output' ),
         inputEditor = CodeMirror.fromTextArea( input, {
+
           theme: 'the-matrix',
           mode: 'text/x-plsql',
           lineNumbers: true,
         }),
         outputEditor = CodeMirror.fromTextArea( output, {
-          mode: {name: "javascript", json: true},
-          theme: 'the-matrix',
-          // cursorBlinkRate: -1,
-          // readOnly: true,
+
           // mode: 'application/ld+json',
           // mode: 'application/json',
           // mode: 'text/javascript',
+          mode: {
+
+            name: 'javascript',
+            json: true
+          },
+          theme: 'the-matrix',
+          // cursorBlinkRate: -1,
+          // readOnly: true,
           lineNumbers: true,
           lineWrapping: true,
           foldGutter: true,
-          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-          extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
-          foldOptions: {
-            widget: (from, to) => {
-              var count = undefined;
+          gutters: [
 
-              // Get open / close token
-              var startToken = '{', endToken = '}';
-              var prevLine = outputEditor.getLine(from.line);
-              if (prevLine.lastIndexOf('[') > prevLine.lastIndexOf('{')) {
-                startToken = '[', endToken = ']';
+            'CodeMirror-linenumbers',
+            'CodeMirror-foldgutter'
+          ],
+          extraKeys: {
+
+            'Ctrl-Q': function( cm ) {
+
+              cm.foldCode( cm.getCursor());
+            }
+          },
+          foldOptions: {
+
+            widget: ( from, to ) => {
+
+              let count      = undefined,
+                  startToken = '{',
+                  endToken   = '}',
+                  prevLine   = outputEditor.getLine( from.line );
+
+              if( prevLine.lastIndexOf( '[' ) > prevLine.lastIndexOf( '{' )) {
+
+                startToken = '[',
+                endToken   = ']';
               }
 
-              // Get json content
-              var internal = outputEditor.getRange(from, to);
-              var toParse = startToken + internal + endToken;
+              let internal = outputEditor.getRange( from, to ),
+                  toParse  = startToken + internal + endToken;
 
-              // Get key count
               try {
-                var parsed = JSON.parse(toParse);
-                count = Object.keys(parsed).length;
-              } catch(e) { }
 
-              return count ? `\u21A4${count}\u21A6` : '\u2194';
+                var parsed = JSON.parse( toParse );
+                count = Object.keys( parsed ).length;
+              }
+              catch( e ) {
+
+                console.log( e );
+              }
+
+              return count ? `\u21A4${ count }\u21A6` : '\u2194';
             }
           },
         });
